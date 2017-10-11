@@ -25,19 +25,38 @@
             $io = new SymfonyStyle($input, $output);
             $io->title('Calculo de Determinantes Cuadrados');
             $io->text('Se genera el calculo general en el proceso de descomposición para encontrar el valor requerido.');
+            $io->newLine(2);
+            
             if($count > 1) {
                 if($this->validateArray($formatArray) == true) {
                     
                     if($count == 2) {
                         
+                        $io->section('Determinante Cuadrado 2x2');
+                        
+                        $det = new \Services\Calculate\DetTwo($formatArray);
+                        $io->table([], $formatArray);
+                        $io->text($det->getRules());
+                        $io->text($det->getRule());
+                        $io->success(sprintf('det A = %s', $det->getDet()));
+                        
                     }
                     elseif($count == 3) {
                         
+                        $io->section('Determinante Cuadrado 3x3');
+                        
+                        $det = new \Services\Calculate\DetThree($formatArray);
+                        $io->table([], $formatArray);
+                        $io->text($det->getRules());
+                        $io->text($det->getRule());
+                        $io->success(sprintf('det A = %s', $det->getDet()));
                     }
                     else {
                        
+                       $io->section(sprintf('Determinante Cuadrado %sx%s', $count, $count));
                        $det = new \Services\Calculate\Determinant($formatArray);
-                       dump($det->getDet()); 
+                       $io->table([], $formatArray);
+                       $io->success(sprintf('det A = %s', $det->getDet()));
                     }
                 }
                 else {

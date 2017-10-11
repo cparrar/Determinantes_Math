@@ -2,10 +2,12 @@
     
     namespace Services\Calculate;
     
+    use Services\Intefaces\InterfaceCalculate;
+    
     /**
      * class DetThree
      */
-    class DetThree {
+    class DetThree implements InterfaceCalculate {
         
         /**
          * @var array
